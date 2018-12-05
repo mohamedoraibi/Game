@@ -1,7 +1,6 @@
 package camp.codelab.game
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         increamentButtonPlayer2.setOnClickListener { buttonIncreamentPayerTwo() }
         decreamentButtonPlayer1.setOnClickListener { buttonDecrementPayerOne() }
         decreamentButtonPlayer2.setOnClickListener { buttonDecrementPayerTwo() }
-        buttonResett.setOnClickListener { buttonFinish() }
-        decreamentButtonPlayer2.setOnClickListener { buttonReset() }
+        buttonResett.setOnClickListener { buttonReset() }
+        Finish.setOnClickListener {  buttonFinish() }
     }
 
     fun buttonIncreamentPayerOne() {
