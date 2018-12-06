@@ -6,8 +6,11 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    var playerOnePoints = 0
-    var playerTwoPoints = 0
+    var playerOnePoints: Int = 0
+    var playerTwoPoints: Int = 0
+    var playerOneWin: Int = 0
+    var playerTwoWin: Int = 0
+    var numberRoundText: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -25,34 +28,71 @@ class MainActivity : AppCompatActivity() {
         decreamentButtonPlayer1.setOnClickListener { buttonDecrementPayerOne() }
         decreamentButtonPlayer2.setOnClickListener { buttonDecrementPayerTwo() }
         buttonResett.setOnClickListener { buttonReset() }
-        Finish.setOnClickListener {  buttonFinish() }
+        Finish.setOnClickListener { buttonFinish() }
     }
 
     fun buttonIncreamentPayerOne() {
-        playerOnePoints++
+        if (playerOnePoints == 40) {
+            playerOnePoints = 0
+            playerTwoPoints = 0
+            playerOneWin++
+            numberRoundText++
+
+        } else if (playerOnePoints == 30) {
+            playerOnePoints += 10
+        } else if (playerOnePoints == 15 || playerOnePoints == 0) {
+            playerOnePoints += 15
+        } else {
+            playerOnePoints += 0
+        }
         currentPointsPlayer1.text = playerOnePoints.toString()
+        currentPointsPlayer2.text = playerTwoPoints.toString()
+        numberWinPlayer1.text = playerOneWin.toString()
     }
 
     fun buttonIncreamentPayerTwo() {
-        playerTwoPoints++
+        if (playerTwoPoints == 40) {
+            playerOnePoints = 0
+            playerTwoPoints = 0
+            playerTwoWin++
+            numberRoundText++
+
+        } else if (playerTwoPoints == 30) {
+            playerTwoPoints += 10
+        } else if (playerTwoPoints == 15 || playerTwoPoints == 0) {
+            playerTwoPoints += 15
+        } else {
+            playerTwoPoints += 0
+        }
+        currentPointsPlayer1.text = playerOnePoints.toString()
         currentPointsPlayer2.text = playerTwoPoints.toString()
+        numberWinPlayer2.text = playerTwoWin.toString()
+        numberRound.text = numberRound.toString()
+
+
     }
 
     fun buttonDecrementPayerOne() {
-        playerOnePoints--
-        currentPointsPlayer1.text = playerOnePoints.toString()
+        if (playerOnePoints > 0) {
+            playerOnePoints -= 15
+            currentPointsPlayer1.text = playerOnePoints.toString()
+        }
     }
 
     fun buttonDecrementPayerTwo() {
-        playerTwoPoints--
-        currentPointsPlayer1.text = playerTwoPoints.toString()
+        if (playerTwoPoints > 0) {
+            playerTwoPoints -= 15
+            currentPointsPlayer2.text = playerTwoPoints.toString()
+        }
     }
 
     fun buttonFinish() {
         val message: String
-        if (playerOnePoints == playerTwoPoints) {
+        if (playerOneWin == 0 && playerTwoWin == 0) {
+            message = "No one Win Yet"
+        } else if (playerOneWin == playerTwoWin) {
             message = "Draw"
-        } else if (playerOnePoints > playerTwoPoints) {
+        } else if (playerOneWin > playerTwoWin) {
             message = "Player One Win!"
         } else {
             message = "Player Two Win!"
@@ -64,8 +104,14 @@ class MainActivity : AppCompatActivity() {
     fun buttonReset() {
         playerOnePoints = 0
         playerTwoPoints = 0
+        playerOneWin = 0
+        playerTwoWin = 0
+        numberRoundText = 1
         currentPointsPlayer1.text = playerOnePoints.toString()
         currentPointsPlayer2.text = playerTwoPoints.toString()
+        numberWinPlayer1.text = playerOneWin.toString()
+        numberWinPlayer2.text = playerTwoWin.toString()
+        numberRound.text = numberRoundText.toString()
 
     }
 
