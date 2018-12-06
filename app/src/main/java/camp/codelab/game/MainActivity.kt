@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         currentPointsPlayer1.text = playerOnePoints.toString()
         currentPointsPlayer2.text = playerTwoPoints.toString()
         numberWinPlayer1.text = playerOneWin.toString()
+        numberRound.text = numberRoundText.toString()
+
     }
 
     fun buttonIncreamentPayerTwo() {
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         currentPointsPlayer1.text = playerOnePoints.toString()
         currentPointsPlayer2.text = playerTwoPoints.toString()
         numberWinPlayer2.text = playerTwoWin.toString()
-        numberRound.text = numberRound.toString()
+        numberRound.text = numberRoundText.toString()
 
 
     }
